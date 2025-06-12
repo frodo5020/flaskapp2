@@ -4,20 +4,21 @@ from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_session import Session
 import socket
+import redis
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # 세션을 Redis에 저장
 app.config['SESSION_TYPE'] = 'redis'
-app.config['SESSION_REDIS'] = redis.StrictRedis(host='redis-svc', port=6379)  # Redis 컨테이너의 IP 주소를 사용합니다.
+app.config['SESSION_REDIS'] = redis.StrictRedis(host='redis.frodo.local', port=6379)  # Redis 컨테이너의 IP 주소를 사용합니다.
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_KEY_PREFIX'] = 'session:'
 Session(app)
 
 # MySQL 설정
-app.config['MYSQL_HOST'] = '10.0.64.100' #DB iP
+app.config['MYSQL_HOST'] = 'dbfrodo.local' #DB iP
 app.config['MYSQL_USER'] = 'frodo'
 app.config['MYSQL_PASSWORD'] = 'Frodo5020!!'
 app.config['MYSQL_DB'] = 'frodo'
