@@ -8,13 +8,13 @@ import socket
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# 세션을 파일 시스템에 저장
-#app.config['SESSION_TYPE'] = 'filesystem'
-#app.config['SESSION_FILE_DIR'] = './flask_session/'
-#app.config['SESSION_PERMANENT'] = False
-#app.config['SESSION_USE_SIGNER'] = True
-#app.config['SESSION_KEY_PREFIX'] = 'session:'
-#Session(app)
+# 세션을 Redis에 저장
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_REDIS'] = redis.StrictRedis(host='redis-svc', port=6379)  # Redis 컨테이너의 IP 주소를 사용합니다.
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_KEY_PREFIX'] = 'session:'
+Session(app)
 
 # MySQL 설정
 app.config['MYSQL_HOST'] = '10.0.64.100' #DB iP
