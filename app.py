@@ -18,7 +18,7 @@ app.config['SESSION_KEY_PREFIX'] = 'session:'
 Session(app)
 
 # MySQL 설정
-app.config['MYSQL_HOST'] = 'dbfrodo.local' #DB iP
+app.config['MYSQL_HOST'] = 'db.frodo.local' #DB iP
 app.config['MYSQL_USER'] = 'frodo'
 app.config['MYSQL_PASSWORD'] = 'Frodo5020!!'
 app.config['MYSQL_DB'] = 'frodo'
